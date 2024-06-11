@@ -1,19 +1,61 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      space: process.env.CTF_SPACE_ID ?? '',
+      environment: 'master',
+      accessToken: process.env.CTF_CDA_ACCESS_TOKEN ?? '',
+    },
+  },
   modules: [
-    'nuxt-csurf',
-    'nuxt-security',
-    '@nuxt/eslint',
+    ['nuxt-delay-hydration', {
+      mode: 'mount',
+      debug: process.env.NODE_ENV === 'development',
+    }],
+    ['@nuxt/eslint', {
+      config: {
+        stylistic: true,
+        semi: true,
+      },
+    }],
     '@unocss/nuxt',
-    '@nuxtjs/i18n'
+    ['@nuxtjs/i18n', {
+      strategy: 'prefix_and_default',
+      defaultLocale: 'ru',
+      locales: [
+        {
+          id: 0,
+          code: 'ru',
+          name: 'Русский',
+          iso: 'ru-RU',
+        },
+        {
+          id: 1,
+          code: 'en',
+          name: 'English',
+          iso: 'en-US',
+        },
+      ],
+    }],
+    '@pinia/nuxt',
   ],
   devServer: {
-    port: 9000
+    port: 9000,
   },
   vite: {
+    css: {
+      devSourcemap: process.env.NODE_ENV === 'development',
+    },
+    optimizeDeps: {
+      include:
+        process.env.NODE_ENV === 'development'
+          ? ['naive-ui'] // ,
+          : [],
+    },
     plugins: [
       AutoImport({
         imports: [
@@ -22,21 +64,31 @@ export default defineNuxtConfig({
               'useDialog',
               'useMessage',
               'useNotification',
-              'useLoadingBar'
-            ]
-          }
-        ]
+              'useLoadingBar',
+            ],
+          },
+        ],
       }),
       Components({
-        resolvers: [NaiveUiResolver()]
-      })
-    ]
+        resolvers: [NaiveUiResolver()],
+      }),
+    ],
   },
-
+  build: {
+    transpile:
+      process.env.NODE_ENV === 'production'
+        ? [
+            'naive-ui',
+            '@css-render/vue3-ssr',
+            'vueuc',
+            '@juggle/resize-observer',
+          ]
+        : ['@juggle/resize-observer'],
+  },
   alias: {
     '#/': './',
     '#components/': './components/',
     '#assets/': './assets/',
-    '#pages/': './pages/'
-  }
+    '#pages/': './pages/',
+  },
 })
