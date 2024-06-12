@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
 import type { GlobalThemeOverrides } from 'naive-ui'
+import { useCommonStore } from '~/store/useCommonStore'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -11,6 +12,11 @@ const head = useLocaleHead({
 })
 const themeOverrides: GlobalThemeOverrides = {}
 const title = computed(() => t(route.meta.title as string ?? 'TBD') + '| Portfolio')
+const store = useCommonStore()
+await store.fetchCommon()
+
+const { commonData } = storeToRefs(store)
+console.log(commonData.value)
 </script>
 
 <template>
@@ -50,6 +56,7 @@ const title = computed(() => t(route.meta.title as string ?? 'TBD') + '| Portfol
         <Body>
           <n-modal-provider>
             <NuxtLoadingIndicator />
+            <port-header :data="commonData" />
             <slot />
           </n-modal-provider>
         </Body>

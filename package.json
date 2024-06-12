@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxtjs/i18n": "latest",
     "@pinia/nuxt": "^0.5.1",
-    "contentful": "^10.11.10",
+    "@squidex/squidex": "^1.2.1",
     "naive-ui": "^2.38.2",
     "nuxt": "^3.11.2",
     "nuxt-csurf": "^1.5.2",
@@ -34,6 +34,10 @@
     "eslint": "^9.4.0",
     "eslint-plugin-unicorn": "^53.0.0",
     "eslint-plugin-vue": "^9.26.0",
+    "postcss-hexrgba": "^2.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-responsive-type": "^1.0.0",
+    "postcss-url": "^10.1.3",
     "prettier": "^3.3.0"
   }
 }

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { usePageStore } from '~/store/usePageStore'
 
-const store = usePageStore()
-await store.fetchPage()
 </script>
 
 <template>

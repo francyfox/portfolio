@@ -6,9 +6,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      space: process.env.CTF_SPACE_ID ?? '',
-      environment: 'master',
-      accessToken: process.env.CTF_CDA_ACCESS_TOKEN ?? '',
+      environment: process.env.VUE_APP_SQUIDEX_URL ?? '',
+      appName: process.env.VUE_APP_SQUIDEX_APPNAME ?? '',
+      clientId: process.env.VUE_APP_SQUIDEX_CLIENTID ?? '',
+      clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
     },
   },
   modules: [
@@ -45,6 +46,18 @@ export default defineNuxtConfig({
   ],
   devServer: {
     port: 9000,
+  },
+  css: [
+    '@unocss/reset/tailwind-compat.css',
+    '~/assets/postcss/base.pcss',
+  ],
+  postcss: {
+    plugins: {
+      'postcss-url': false,
+      'postcss-nested': {},
+      'postcss-responsive-type': {},
+      'postcss-hexrgba': {},
+    },
   },
   vite: {
     css: {
