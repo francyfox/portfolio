@@ -1,8 +1,5 @@
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-
 export default defineNuxtConfig({
+  components: false,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
@@ -12,32 +9,37 @@ export default defineNuxtConfig({
       clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
     },
   },
-  modules: [['nuxt-delay-hydration', {
-    mode: 'mount',
-    debug: process.env.NODE_ENV === 'development',
-  }], ['@nuxt/eslint', {
-    config: {
-      stylistic: true,
-      semi: true,
-    },
-  }], '@unocss/nuxt', 'nuxt-lucide-icons', ['@nuxtjs/i18n', {
-    strategy: 'prefix_and_default',
-    defaultLocale: 'ru',
-    locales: [
-      {
-        id: 0,
-        code: 'ru',
-        name: 'Русский',
-        iso: 'ru-RU',
+  modules: [
+    ['nuxt-delay-hydration', {
+      mode: 'mount',
+      debug: process.env.NODE_ENV === 'development',
+    }],
+    ['@nuxtjs/seo', {
+      robots: false,
+    }],
+    ['@nuxt/eslint', {
+      config: {
+        stylistic: true,
+        semi: true,
       },
-      {
-        id: 1,
-        code: 'en',
-        name: 'English',
-        iso: 'en-US',
-      },
-    ],
-  }], '@pinia/nuxt', '@nuxt/image'],
+    }], '@unocss/nuxt', 'nuxt-lucide-icons', ['@nuxtjs/i18n', {
+      strategy: 'prefix_and_default',
+      defaultLocale: 'ru',
+      locales: [
+        {
+          id: 0,
+          code: 'ru',
+          name: 'Русский',
+          iso: 'ru-RU',
+        },
+        {
+          id: 1,
+          code: 'en',
+          name: 'English',
+          iso: 'en-US',
+        },
+      ],
+    }], '@pinia/nuxt'],
   devServer: {
     port: 9000,
   },
@@ -64,23 +66,7 @@ export default defineNuxtConfig({
           ? ['naive-ui'] // ,
           : [],
     },
-    plugins: [
-      AutoImport({
-        imports: [
-          {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar',
-            ],
-          },
-        ],
-      }),
-      Components({
-        resolvers: [NaiveUiResolver()],
-      }),
-    ],
+    plugins: [],
   },
   build: {
     transpile:

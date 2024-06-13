@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
-import { useCommonStore } from '~/store/useCommonStore'
 import { themeOverrides } from '~/app/module/theme/theme'
+import PortHeader from '~/components/port-header/PortHeader.vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -12,12 +12,13 @@ const head = useLocaleHead({
 })
 const title = computed(() => t(route.meta.title as string ?? 'TBD') + '| Portfolio')
 const store = useCommonStore()
-await store.fetchCommon()
 const { commonData } = storeToRefs(store)
 
-watch(locale, async () => {
-  await store.fetchCommon()
-})
+const { status } = useAsyncData(() => store.fetchCommon())
+
+// watch(locale, async () => {
+//   await store.fetchCommon()
+// })
 </script>
 
 <template>
@@ -65,7 +66,10 @@ watch(locale, async () => {
 
           <n-modal-provider>
             <NuxtLoadingIndicator />
-            <port-header :data="commonData" />
+            <port-header
+              :data="commonData"
+              :loading="status !== 'success'"
+            />
             <slot />
           </n-modal-provider>
         </Body>

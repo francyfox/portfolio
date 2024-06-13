@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { NSkeleton } from 'naive-ui'
 import PortLang from '~/components/port-lang/PortLang.vue'
 
 defineProps<{
   data: {
     siteName: string
     headerNav: { name: string, to: string }[]
-  }
+  } | undefined
+  loading: boolean
 }>()
 </script>
 
@@ -18,7 +20,7 @@ defineProps<{
           class="site-name text-2xl"
         >
           <span
-            v-if="!data?.siteName"
+            v-if="loading"
             class="flex w-[150px]"
           >
             <transition>
@@ -30,13 +32,13 @@ defineProps<{
             </transition>
           </span>
           <span v-else>
-            {{ data.siteName }}
+            {{ data?.siteName }}
           </span>
         </nuxt-link>
 
         <div class="flex items-center gap-8">
           <nav
-            v-if="!data?.headerNav"
+            v-if="loading"
             class="flex gap-2"
           >
             <n-skeleton
@@ -49,10 +51,11 @@ defineProps<{
           </nav>
           <nav v-else>
             <nuxt-link
-              v-for="(item, index) in data.headerNav"
+              v-for="(item, index) in data?.headerNav"
               :key="index"
               :to="item.to"
-              class="link text-xl"
+              class="link inline-flex text-xl px-2 py-3 hover:bg-amber hover:text-dark rounded-sm"
+              active-class="bg-gray-900 pointer-events-none"
             >
               {{ item.name }}
             </nuxt-link>

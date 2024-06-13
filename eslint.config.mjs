@@ -9,7 +9,8 @@ export default withNuxt(
     ignores: [".config/*"],
     rules: {
       'vue/multi-word-component-names': 'off',
-      'unicorn/filename-case': 'off'
+      'unicorn/filename-case': 'off',
+      'vue/no-v-html': 'off'
     }
   },
 )

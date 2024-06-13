@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NSelect } from 'naive-ui'
+
 const { locale, setLocale } = useI18n()
 const value = ref(locale.value)
 const options = [

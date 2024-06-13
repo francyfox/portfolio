@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { SquidexError } from '@squidex/squidex'
 import { useSquidex } from '~/composables/useSquidex'
 
-export const useCommonStore = defineStore('page', () => {
+export const useCommonStore = defineStore('common', () => {
   const { client } = useSquidex()
   const { locale } = useI18n()
   const common = ref()
