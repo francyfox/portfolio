@@ -12,51 +12,46 @@ export default defineNuxtConfig({
       clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
     },
   },
-  modules: [
-    ['nuxt-delay-hydration', {
-      mode: 'mount',
-      debug: process.env.NODE_ENV === 'development',
-    }],
-    ['@nuxt/eslint', {
-      config: {
-        stylistic: true,
-        semi: true,
+  modules: [['nuxt-delay-hydration', {
+    mode: 'mount',
+    debug: process.env.NODE_ENV === 'development',
+  }], ['@nuxt/eslint', {
+    config: {
+      stylistic: true,
+      semi: true,
+    },
+  }], '@unocss/nuxt', 'nuxt-lucide-icons', ['@nuxtjs/i18n', {
+    strategy: 'prefix_and_default',
+    defaultLocale: 'ru',
+    locales: [
+      {
+        id: 0,
+        code: 'ru',
+        name: 'Русский',
+        iso: 'ru-RU',
       },
-    }],
-    '@unocss/nuxt',
-    ['@nuxtjs/i18n', {
-      strategy: 'prefix_and_default',
-      defaultLocale: 'ru',
-      locales: [
-        {
-          id: 0,
-          code: 'ru',
-          name: 'Русский',
-          iso: 'ru-RU',
-        },
-        {
-          id: 1,
-          code: 'en',
-          name: 'English',
-          iso: 'en-US',
-        },
-      ],
-    }],
-    '@pinia/nuxt',
-  ],
+      {
+        id: 1,
+        code: 'en',
+        name: 'English',
+        iso: 'en-US',
+      },
+    ],
+  }], '@pinia/nuxt', '@nuxt/image'],
   devServer: {
     port: 9000,
   },
   css: [
     '@unocss/reset/tailwind-compat.css',
+    '@fontsource/tenor-sans',
+    '@fontsource/montserrat-alternates',
     '~/assets/postcss/base.pcss',
   ],
   postcss: {
     plugins: {
-      'postcss-url': false,
       'postcss-nested': {},
-      'postcss-responsive-type': {},
       'postcss-hexrgba': {},
+      '@unocss/postcss': {},
     },
   },
   vite: {
