@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
-import type { GlobalThemeOverrides } from 'naive-ui'
-import { useCommonStore } from '~/store/useCommonStore'
+import { themeOverrides } from '~/app/module/theme/theme'
+import PortHeader from '~/components/port-header/PortHeader.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: 'id',
   addSeoAttributes: true,
 })
-const themeOverrides: GlobalThemeOverrides = {}
 const title = computed(() => t(route.meta.title as string ?? 'TBD') + '| Portfolio')
 const store = useCommonStore()
-await store.fetchCommon()
-
 const { commonData } = storeToRefs(store)
-console.log(commonData.value)
+
+const { status } = useAsyncData(() => store.fetchCommon())
+
+// watch(locale, async () => {
+//   await store.fetchCommon()
+// })
 </script>
 
 <template>
@@ -53,10 +55,21 @@ console.log(commonData.value)
       :theme-overrides="themeOverrides"
     >
       <n-message-provider>
-        <Body>
+        <Body class="relative">
+          <div class="bg flex w-full justify-center items-center absolute top-0 left-0 overflow-hidden z-[-1]">
+            <img
+              src="/img/vintage_pattern_1.svg"
+              alt="bg"
+              class="w-full h-screen opacity-5 p-5"
+            >
+          </div>
+
           <n-modal-provider>
             <NuxtLoadingIndicator />
-            <port-header :data="commonData" />
+            <port-header
+              :data="commonData"
+              :loading="status !== 'success'"
+            />
             <slot />
           </n-modal-provider>
         </Body>

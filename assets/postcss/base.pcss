@@ -1,0 +1,32 @@
+@unocss;
+
+body {
+  font-family: 'Montserrat Alternates', sans-serif;;
+  background: linear-gradient(45deg, #2e2d39, #362c47);
+
+  @apply text-xl text-white fw-300 lh-normal;
+}
+
+.font-tenor-sans {
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .title {
+  @apply mb-5;
+}
+
+p {
+  @apply mb-2;
+}
+
+code {
+  @apply flex-inline py-[0.5px] px-1 bg-gray-800 rounded-sm;
+}
+
+main a, aside a, .content a, .site-name {
+  @apply flex-inline text-amber-200 hover:text-amber-500 hover:transform-scale-105 transition-colors transition-transform transform-cpu px-[0.5px];
+
+  &:active {
+    @apply text-violet-100 hover:text-violet-500;
+  }
+}

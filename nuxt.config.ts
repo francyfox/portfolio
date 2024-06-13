@@ -1,8 +1,5 @@
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-
 export default defineNuxtConfig({
+  components: false,
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
@@ -17,14 +14,15 @@ export default defineNuxtConfig({
       mode: 'mount',
       debug: process.env.NODE_ENV === 'development',
     }],
+    ['@nuxtjs/seo', {
+      robots: false,
+    }],
     ['@nuxt/eslint', {
       config: {
         stylistic: true,
         semi: true,
       },
-    }],
-    '@unocss/nuxt',
-    ['@nuxtjs/i18n', {
+    }], '@unocss/nuxt', 'nuxt-lucide-icons', ['@nuxtjs/i18n', {
       strategy: 'prefix_and_default',
       defaultLocale: 'ru',
       locales: [
@@ -41,22 +39,21 @@ export default defineNuxtConfig({
           iso: 'en-US',
         },
       ],
-    }],
-    '@pinia/nuxt',
-  ],
+    }], '@pinia/nuxt'],
   devServer: {
     port: 9000,
   },
   css: [
     '@unocss/reset/tailwind-compat.css',
+    '@fontsource/tenor-sans',
+    '@fontsource/montserrat-alternates',
     '~/assets/postcss/base.pcss',
   ],
   postcss: {
     plugins: {
-      'postcss-url': false,
       'postcss-nested': {},
-      'postcss-responsive-type': {},
       'postcss-hexrgba': {},
+      '@unocss/postcss': {},
     },
   },
   vite: {
@@ -69,23 +66,7 @@ export default defineNuxtConfig({
           ? ['naive-ui'] // ,
           : [],
     },
-    plugins: [
-      AutoImport({
-        imports: [
-          {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar',
-            ],
-          },
-        ],
-      }),
-      Components({
-        resolvers: [NaiveUiResolver()],
-      }),
-    ],
+    plugins: [],
   },
   build: {
     transpile:
