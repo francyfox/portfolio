@@ -39,7 +39,10 @@ export default defineNuxtConfig({
           iso: 'en-US',
         },
       ],
-    }], '@pinia/nuxt'],
+    }], '@pinia/nuxt', ['nuxt-particles', {
+      mode: 'custom',
+      lazy: true,
+    }]],
   devServer: {
     port: 9000,
   },

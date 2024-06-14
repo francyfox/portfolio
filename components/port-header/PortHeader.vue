@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <header class="sticky bg-[#43404725]">
+  <header class="sticky bg-gradient-to-l from-[#43404766] from-10%  to-[#ffffff29] to-150% z-10">
     <div class="container">
       <div class="flex justify-between items-center gap-2 py-2">
         <nuxt-link

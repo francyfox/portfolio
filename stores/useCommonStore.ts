@@ -12,6 +12,8 @@ export const useCommonStore = defineStore('common', () => {
           siteName: common.value?.data.siteName![locale.value],
           headerNav: common.value?.data.headerNav![locale.value],
           seo: common.value?.data.seo![locale.value],
+          copyrigth: common.value?.data.copyrigth.iv,
+          counters: common.value?.data.counters.iv,
         }
       : undefined
   })

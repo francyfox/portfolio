@@ -23,10 +23,18 @@ code {
   @apply flex-inline py-[0.5px] px-1 bg-gray-800 rounded-sm;
 }
 
-main a, aside a, .content a, .site-name {
-  @apply flex-inline text-amber-200 hover:text-amber-500 hover:transform-scale-105 transition-colors transition-transform transform-cpu px-[0.5px];
+main a, aside a, .content a, .site-name, .copyright a {
+  @apply flex-inline text-amber-200 hover:bg-amber-500 hover:text-gray-800 hover:transform-scale-105 transition-all transform-cpu px-[0.5px] rounded-sm;
 
   &:active {
     @apply text-violet-100 hover:text-violet-500;
   }
+}
+
+.n-config-provider, #__nuxt, body, html, .page {
+  @apply h-full;
+}
+
+.n-skeleton {
+  @apply !bg-dark-300 animate-bounce;
 }
