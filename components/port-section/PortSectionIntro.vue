@@ -8,13 +8,6 @@ defineProps<{
   } | undefined
   loading: boolean
 }>()
-
-const redirectOnError = () => {
-  throw createError({
-    statusCode: 404,
-    message: 'Its joke',
-  })
-}
 </script>
 
 <template>

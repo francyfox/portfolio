@@ -10,6 +10,7 @@ const store = useCommonStore()
 const pageStore = usePageStore()
 const { commonData } = storeToRefs(store)
 const { pageData } = storeToRefs(pageStore)
+const hasKadet = ref(false)
 
 if (commonData.value?.seo) {
   useSeoMeta(commonData.value?.seo)
@@ -26,6 +27,10 @@ onMounted(() => {
       message.warning('Allow audio autoplay for this site', { closable: true, duration: 9999 })
       localStorage.setItem('port-audio', '1')
     }, 2000)
+  }
+
+  if (!localStorage.getItem('port-error')) {
+    hasKadet.value = true
   }
 })
 </script>
@@ -47,6 +52,7 @@ onMounted(() => {
       :loading="status !== 'success'"
     />
     <nuxt-link
+      v-if="hasKadet"
       to="/error"
       class="flex absolute bottom-0 left-[5%] z-20 bg-transparent"
       title="I see you..."

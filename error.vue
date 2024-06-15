@@ -1,10 +1,13 @@
 <script setup lang="ts">
 const error = useError()
-
 const show = ref(true)
 
 onMounted(() => {
   setTimeout(() => show.value = false, 5000)
+
+  if (error.value.data.path === '/error') {
+    window.localStorage.setItem('port-error', '1')
+  }
 })
 </script>
 

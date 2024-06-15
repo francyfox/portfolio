@@ -28,7 +28,7 @@ export const useCommonStore = defineStore('common', () => {
     catch (error) {
       if (error instanceof SquidexError && error.statusCode === 400) {
         throw createError({
-          status: 500,
+          status: 400,
           message: 'Cant fetch navigation bar',
         })
       }
