@@ -11,11 +11,18 @@ defineProps<{
 </script>
 
 <template>
-  <section class="section-intro py-20">
-    <div class="container">
-      <div class="flex gap-5">
-        <div class="w-full md:w-1/2" />
-        <div class="w-full md:w-1/2">
+  <section class="section-intro relative overflow-hidden h-full py-20">
+    <div class="section-intro-bg absolute h-full z-1" />
+    <div class="container relative">
+      <div class="grid grid-cols-2 gap-5">
+        <div class="w-full">
+          <img
+            src="https://res.cloudinary.com/dr5gcup5n/image/upload/f_auto,q_auto/v1/portfolio/yojrk7zsnthf2wosd8ac"
+            alt="tree"
+            class="absolute bottom-0 left-[5%]"
+          >
+        </div>
+        <div class="w-full">
           <h1 class="title text-4xl">
             <span v-if="loading">
               <n-skeleton text />
@@ -46,6 +53,16 @@ defineProps<{
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
+.section-intro {
+  @apply relative;
 
+  &-bg {
+    &:after {
+      content: '';
+
+      @apply top-[300px] left-[-100vw] absolute flex w-[200vw] h-[50vh] bg-dark rotate-20;
+    }
+  }
+}
 </style>

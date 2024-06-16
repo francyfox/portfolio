@@ -2,8 +2,9 @@
 import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
 import { themeOverrides } from '~/app/module/theme/theme'
 import PortHeader from '~/components/port-header/PortHeader.vue'
+import PortFooter from '~/components/port-footer/PortFooter.vue'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute()
 const head = useLocaleHead({
   addDirAttribute: true,
@@ -15,10 +16,6 @@ const store = useCommonStore()
 const { commonData } = storeToRefs(store)
 
 const { status } = useAsyncData(() => store.fetchCommon())
-
-// watch(locale, async () => {
-//   await store.fetchCommon()
-// })
 </script>
 
 <template>
@@ -66,11 +63,17 @@ const { status } = useAsyncData(() => store.fetchCommon())
 
           <n-modal-provider>
             <NuxtLoadingIndicator />
-            <port-header
-              :data="commonData"
-              :loading="status !== 'success'"
-            />
-            <slot />
+            <div class="flex flex-col justify-between h-full">
+              <port-header
+                :data="commonData"
+                :loading="status !== 'success'"
+              />
+              <slot />
+              <port-footer
+                :data="commonData"
+                :loading="status !== 'success'"
+              />
+            </div>
           </n-modal-provider>
         </Body>
       </n-message-provider>

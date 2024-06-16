@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <header class="sticky bg-[#43404725]">
+  <header class="sticky bg-gradient-to-l from-[#43404766] from-10%  to-[#ffffff29] to-150% z-10">
     <div class="container">
       <div class="flex justify-between items-center gap-2 py-2">
         <nuxt-link
@@ -36,10 +36,10 @@ defineProps<{
           </span>
         </nuxt-link>
 
-        <div class="flex items-center gap-8">
+        <div class="flex items-center gap-5">
           <nav
             v-if="loading"
-            class="flex gap-2"
+            class="flex gap-5"
           >
             <n-skeleton
               v-for="(item, index) in Array.from({ length: 5 }, () => null)"
@@ -49,7 +49,10 @@ defineProps<{
               class="w-[80px]"
             />
           </nav>
-          <nav v-else>
+          <nav
+            v-else
+            class="flex items-center gap-5"
+          >
             <nuxt-link
               v-for="(item, index) in data?.headerNav"
               :key="index"
