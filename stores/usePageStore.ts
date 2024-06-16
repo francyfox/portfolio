@@ -19,8 +19,6 @@ export const usePageStore = defineStore('page', () => {
         languages: locale.value,
       })
 
-      console.log(page.value)
-
       page.value = data
     }
     catch (error) {

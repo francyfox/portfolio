@@ -2,6 +2,7 @@
 const error = useError()
 const show = ref(true)
 
+const isProduction = !import.meta.dev
 onMounted(() => {
   setTimeout(() => show.value = false, 5000)
 
@@ -25,6 +26,7 @@ onMounted(() => {
       </h2>
 
       <audio
+        v-if="isProduction"
         src="https://www.myinstants.com/media/sounds/directed-by-robert-b_voI2Z4T.mp3"
         autoplay
       />
