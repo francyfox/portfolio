@@ -26,11 +26,11 @@ const rules = {
   },
 }
 const formValue = ref({
-  fullName: '',
+  fullName: 'test',
   phone: '',
   hasSocial: false,
   company: '',
-  message: '',
+  message: 'test',
 })
 
 const onSubmitHandler = (error: Event) => {
@@ -38,6 +38,13 @@ const onSubmitHandler = (error: Event) => {
   formRef.value?.validate(async (errors) => {
     if (!errors) {
       message.warning(t('form.sending'))
+
+      const { data, error } = useFetch('/api/feedback', {
+        method: 'POST',
+        body: formValue.value,
+      })
+
+      console.log(data.value)
     }
   })
 }
