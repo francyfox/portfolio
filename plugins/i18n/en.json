@@ -1,4 +1,20 @@
 {
   "TBD": "TBD",
-  "links": "Links"
+  "form": {
+    "error": "Error! Try later",
+    "feedback": {
+      "company": "Company",
+      "email": "Email",
+      "fullName": "FullName",
+      "hasSocial": "Have Telegram/WhatsApp",
+      "message": "Message",
+      "phone": "Phone",
+      "submit": "Send",
+      "title": "Feedback"
+    },
+    "required": "Required!",
+    "sending": "Message sending..."
+  },
+  "links": "Links",
+  "menu": "Menu"
 }

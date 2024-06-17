@@ -1,4 +1,4 @@
-import { defineConfig, presetUno } from 'unocss'
+import { defineConfig, presetUno, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   content: {
@@ -8,6 +8,9 @@ export default defineConfig({
   },
   presets: [
     presetUno(),
+  ],
+  transformers: [
+    transformerVariantGroup(),
   ],
   theme: {
     container: {

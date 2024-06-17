@@ -1,4 +1,20 @@
 {
   "TBD": "TBD",
-  "links": "Ссылки"
+  "form": {
+    "error": "Ошибка! Попробуйте позже",
+    "feedback": {
+      "company": "Компания",
+      "email": "Почта",
+      "fullName": "ФИО",
+      "hasSocial": "Есть Telegram/Whatsapp",
+      "message": "Сообщение",
+      "phone": "Телефон",
+      "submit": "Отправить",
+      "title": "Написать мне"
+    },
+    "required": "Поле обязательно для заполнения!",
+    "sending": "Идёт отправка..."
+  },
+  "links": "Ссылки",
+  "menu": "Меню"
 }

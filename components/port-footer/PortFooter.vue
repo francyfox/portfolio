@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <footer class="section-footer bg-gradient-to-r from-[#43404766] from-10%  to-[#ffffff29] to-150% z-10">
+  <footer class="section-footer mt-20 bg-gradient-to-r from-[#43404766] from-10%  to-[#ffffff29] to-150% z-10">
     <div class="container">
       <div class="flex justify-between items-center py-5">
         <div class="copyright flex">

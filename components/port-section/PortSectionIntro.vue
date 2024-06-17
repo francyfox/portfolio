@@ -11,21 +11,24 @@ defineProps<{
 </script>
 
 <template>
-  <section class="section-intro relative overflow-hidden h-full py-20">
+  <section class="section-intro relative overflow-hidden h-full py-20 lt-xl:(py-10)">
     <div class="section-intro-bg absolute h-full z-1" />
     <div class="container relative">
-      <div class="grid grid-cols-2 gap-5">
-        <div class="w-full">
+      <div class="grid grid-cols-2 lt-xl:(grid-cols-1) gap-5">
+        <div class="w-full relative">
           <img
             src="https://res.cloudinary.com/dr5gcup5n/image/upload/f_auto,q_auto/v1/portfolio/yojrk7zsnthf2wosd8ac"
             alt="tree"
-            class="absolute bottom-0 left-[5%]"
+            class="absolute bottom-0 left-0 lt-xl:(fixed opacity-40 bottom-[40px])"
           >
         </div>
-        <div class="w-full">
-          <h1 class="title text-4xl">
+        <div class="w-full z-1">
+          <h1 class="title text-4xl lt-xl:text-2xl">
             <span v-if="loading">
-              <n-skeleton text />
+              <n-skeleton
+                text
+                :repeat="2"
+              />
             </span>
             <span v-else>
               {{ data?.title }}
@@ -34,11 +37,11 @@ defineProps<{
 
           <main
             v-if="loading"
-            class="text-md"
+            class="text-md lt-xl:text-sm"
           >
             <n-skeleton
               text
-              :repeat="4"
+              :repeat="14"
             />
           </main>
 
@@ -61,7 +64,11 @@ defineProps<{
     &:after {
       content: '';
 
-      @apply top-[300px] left-[-100vw] absolute flex w-[200vw] h-[50vh] bg-dark rotate-20;
+      @apply fixed bottom-[-80px] left-[-100vw]  flex w-[200vw] h-[50vh] bg-dark rotate-10;
+
+      @screen lt-xl {
+        @apply !bottom-[-150px];
+      }
     }
   }
 }

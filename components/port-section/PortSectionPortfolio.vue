@@ -65,7 +65,7 @@ withDefaults(
               class="max-w-2xl flex flex-col gap-5 bg-dark:95 p-5 rounded-sm"
             >
               <div
-                class="title text-4xl"
+                class="title text-3xl lt-md:(text-xl)"
               >
                 .:: {{ slide.title }}
               </div>
