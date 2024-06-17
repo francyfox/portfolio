@@ -1,6 +1,9 @@
 export default defineNuxtConfig({
   components: false,
   devtools: { enabled: true },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   runtimeConfig: {
     public: {
       environment: process.env.VUE_APP_SQUIDEX_URL ?? '',

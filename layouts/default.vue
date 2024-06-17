@@ -3,6 +3,7 @@ import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
 import { themeOverrides } from '~/app/module/theme/theme'
 import PortHeader from '~/components/port-header/PortHeader.vue'
 import PortFooter from '~/components/port-footer/PortFooter.vue'
+import { particlesFlareOptions } from '~/app/module/particles/particles.flare'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -53,6 +54,16 @@ const { status } = useAsyncData(() => store.fetchCommon())
     >
       <n-message-provider>
         <Body class="relative">
+          <audio
+            ref="audioRef"
+            autoplay
+            class="hidden"
+          />
+          <nuxt-particles
+            id="tsparticles"
+            :options="particlesFlareOptions"
+            class="opacity-15"
+          />
           <div class="bg flex w-full justify-center items-center absolute top-0 left-0 overflow-hidden z-[-1]">
             <img
               src="/img/vintage_pattern_1.svg"
@@ -81,6 +92,13 @@ const { status } = useAsyncData(() => store.fetchCommon())
   </Html>
 </template>
 
-<style scoped>
-
+<style>
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
+}
 </style>

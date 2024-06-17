@@ -3,7 +3,7 @@ import { loadFireflyPreset } from '@tsparticles/preset-firefly'
 import { tsParticles } from '@tsparticles/engine'
 import { useMessage } from 'naive-ui'
 import PortSectionIntro from '~/components/port-section/PortSectionIntro.vue'
-import { particlesFlareOptions } from '~/app/module/particles/particles.flare'
+import PortModalFeedback from '~/components/port-modal/PortModalFeedback.vue'
 
 const message = useMessage()
 const store = useCommonStore()
@@ -11,6 +11,7 @@ const pageStore = usePageStore()
 const { commonData } = storeToRefs(store)
 const { pageData } = storeToRefs(pageStore)
 const hasKadet = ref(false)
+const showModalFeedback = ref(true)
 
 if (commonData.value?.seo) {
   useSeoMeta(commonData.value?.seo)
@@ -32,21 +33,15 @@ onMounted(() => {
   if (!localStorage.getItem('port-error')) {
     hasKadet.value = true
   }
+
+  window.addEventListener('hashchange', () =>
+    showModalFeedback.value = window.location.hash === '#feedback',
+  )
 })
 </script>
 
 <template>
   <div class="page home-page relative">
-    <audio
-      ref="audioRef"
-      autoplay
-      class="hidden"
-    />
-    <nuxt-particles
-      id="tsparticles"
-      :options="particlesFlareOptions"
-      class="opacity-15"
-    />
     <port-section-intro
       :data="pageData.sections[0]"
       :loading="status !== 'success'"
@@ -64,6 +59,7 @@ onMounted(() => {
         height="120"
       >
     </nuxt-link>
+    <port-modal-feedback v-model="showModalFeedback" />
   </div>
 </template>
 
