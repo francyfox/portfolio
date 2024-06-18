@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type FormInst, NModal, NFormItem, NCheckbox, NForm, NInput, NButton, useMessage } from 'naive-ui'
+import VueTurnstile from 'vue-turnstile'
 
 const model = defineModel({ default: false })
 const { t, locale } = useI18n()
@@ -36,6 +37,7 @@ const formValue = ref({
   hasSocial: false,
   company: '',
   message: 'test',
+  token: '',
 })
 
 const onSubmitHandler = (error: Event) => {
@@ -49,7 +51,14 @@ const onSubmitHandler = (error: Event) => {
         body: formValue.value,
       })
 
-      console.log(data.value)
+      if (error) {
+        console.log(error)
+        message.success(t('form.error'))
+      }
+      else {
+        console.log(data)
+        message.success(t('form.success'))
+      }
     }
   })
 }
@@ -127,12 +136,11 @@ const onCancelHandler = () => {
       </n-form-item>
 
       <n-form-item>
-        <div
-          ref="turnstileRef"
-          class="cf-turnstile"
-          :data-sitekey="turnstileSiteKey"
-          data-theme="dark"
-          :data-language="locale"
+        <vue-turnstile
+          v-model="formValue.token"
+          :site-key="turnstileSiteKey"
+          theme="dark"
+          :language="locale"
         />
       </n-form-item>
 

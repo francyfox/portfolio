@@ -1,52 +1,6 @@
 import { defineEventHandler, readValidatedBody } from 'h3'
-import { z } from 'zod'
-
-const stringError = (key: string) => {
-  return {
-    required_error: `${key} is required`,
-    invalid_type_error: `${key} must be a string`,
-  }
-}
-
-const feedbackSchema = z.object({
-  'company': z.string(stringError('company')).optional(),
-  'fullName': z.string(stringError('full name')),
-  'hasSocial': z.boolean({
-    required_error: `hasSocial is required`,
-    invalid_type_error: `hasSocial must be a boolean`,
-  }).optional(),
-  'phone': z
-    .string(stringError('phone')),
-  'message': z.string(stringError('message')),
-  'cf-turnstile-response': z.string(stringError('token')),
-})
-
-interface turnsiteBodyParameters {
-  secret: string
-  token: string
-  ip: string
-}
-const turnstileValidate = async ({ secret, token, ip }: turnsiteBodyParameters): Promise<boolean> => {
-  try {
-    const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-    const data = await $fetch(url, {
-      method: 'POST',
-      body: {
-        secret,
-        token,
-        ip,
-      },
-    }) as { success: boolean }
-
-    return data.success
-  }
-  catch (error) {
-    throw createError({
-      status: 500,
-      message: 'Turnstile validation failed. Request error: ' + JSON.stringify(error),
-    })
-  }
-}
+import { turnstileValidate } from '~/server/module/turnstile/turnstile'
+import feedbackSchema from '~/server/module/feedback/feedback.schema'
 
 export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, feedbackSchema.parse)
@@ -56,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const headers = getRequestHeaders(event)
   const validateParameters = {
     secret,
-    token: body['cf-turnstile-response'],
+    token: token,
     ip: headers['CF-Connecting-IP'] ?? '',
   }
 
