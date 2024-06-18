@@ -3,6 +3,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      script: [
+        {
+          src: 'https://challenges.cloudflare.com/turnstile/v0/api.js',
+          defer: true,
+        },
+      ],
+    },
   },
   runtimeConfig: {
     public: {
@@ -10,6 +18,7 @@ export default defineNuxtConfig({
       appName: process.env.VUE_APP_SQUIDEX_APPNAME ?? '',
       clientId: process.env.VUE_APP_SQUIDEX_CLIENTID ?? '',
       clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
+      turnstileSiteKey: process.env.TUNRNSTILE_SITE_KEY ?? '',
     },
   },
   modules: [

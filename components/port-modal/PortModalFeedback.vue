@@ -2,7 +2,12 @@
 import { type FormInst, NModal, NFormItem, NCheckbox, NForm, NInput, NButton, useMessage } from 'naive-ui'
 
 const model = defineModel({ default: false })
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
+const config = useRuntimeConfig()
+const {
+  turnstileSiteKey,
+} = config.public as unknown as never
 
 // eslint-disable-next-line unicorn/prevent-abbreviations
 const formRef = ref<FormInst | undefined>(undefined)
@@ -122,6 +127,16 @@ const onCancelHandler = () => {
       </n-form-item>
 
       <n-form-item>
+        <div
+          ref="turnstileRef"
+          class="cf-turnstile"
+          :data-sitekey="turnstileSiteKey"
+          data-theme="dark"
+          :data-language="locale"
+        />
+      </n-form-item>
+
+      <n-form-item :show-label="false">
         <n-button
           type="primary"
           attr-type="submit"
