@@ -11,7 +11,7 @@ const pageStore = usePageStore()
 const { commonData } = storeToRefs(store)
 const { pageData } = storeToRefs(pageStore)
 const hasKadet = ref(false)
-const showModalFeedback = ref(true)
+const showModalFeedback = ref(false)
 
 if (commonData.value?.seo) {
   useSeoMeta(commonData.value?.seo)
