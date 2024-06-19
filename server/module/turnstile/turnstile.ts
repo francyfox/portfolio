@@ -3,19 +3,24 @@ interface turnstileBodyParameters {
   token: string
   ip: string
 }
-export const turnstileValidate = async ({ secret, token, ip }: turnstileBodyParameters): Promise<boolean> => {
+
+interface turnstileResponse {
+  success: boolean
+}
+export const turnstileValidate = async ({ secret, token, ip }: turnstileBodyParameters): Promise<turnstileResponse> => {
   try {
+    const formData = new FormData()
+    formData.append('secret', secret)
+    formData.append('response', token)
+    formData.append('remoteip', ip)
     const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
     const data = await $fetch(url, {
       method: 'POST',
-      body: {
-        secret,
-        token,
-        ip,
-      },
-    }) as { success: boolean }
+      body: formData,
+    }) as turnstileResponse
 
-    return data.success
+    console.log(data, secret)
+    return data
   }
   catch (error) {
     throw createError({

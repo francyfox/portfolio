@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { type FormInst, NModal, NFormItem, NCheckbox, NForm, NInput, NButton, useMessage } from 'naive-ui'
+import { type FormInst, NModal, NFormItem, NCheckbox, NForm, NInput, NButton, useMessage, useDialog } from 'naive-ui'
 import VueTurnstile from 'vue-turnstile'
 
+const dialog = useDialog()
 const model = defineModel({ default: false })
 const { t, locale } = useI18n()
 
@@ -32,11 +33,11 @@ const rules = {
   },
 }
 const formValue = ref({
-  fullName: 'test',
+  fullName: '',
   phone: '',
   hasSocial: false,
   company: '',
-  message: 'test',
+  message: '',
   token: '',
 })
 
@@ -51,13 +52,27 @@ const onSubmitHandler = (error: Event) => {
         body: formValue.value,
       })
 
-      if (error) {
-        console.log(error)
-        message.success(t('form.error'))
+      model.value = false
+
+      if (error.value) {
+        console.log(error.value)
+        dialog.success({
+          title: 'Error',
+          content: t('form.error'),
+          onPositiveClick: () => {
+            message.success('OK')
+          },
+        })
       }
       else {
         console.log(data)
-        message.success(t('form.success'))
+        dialog.success({
+          title: 'Success',
+          content: t('form.success'),
+          onPositiveClick: () => {
+            message.success('OK')
+          },
+        })
       }
     }
   })
@@ -141,6 +156,7 @@ const onCancelHandler = () => {
           :site-key="turnstileSiteKey"
           theme="dark"
           :language="locale"
+          class="max-w-[100%] box-border overflow-hidden"
         />
       </n-form-item>
 

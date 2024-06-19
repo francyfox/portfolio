@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { NConfigProvider, NMessageProvider, NModalProvider } from 'naive-ui'
+import { NConfigProvider, NMessageProvider, NModalProvider, NDialogProvider } from 'naive-ui'
 import { themeOverrides } from '~/app/module/theme/theme'
 import PortHeader from '~/components/port-header/PortHeader.vue'
 import PortFooter from '~/components/port-footer/PortFooter.vue'
 import { particlesFlareOptions } from '~/app/module/particles/particles.flare'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const head = useLocaleHead({
   addDirAttribute: true,
@@ -17,6 +17,8 @@ const store = useCommonStore()
 const { commonData } = storeToRefs(store)
 
 const { status } = useAsyncData(() => store.fetchCommon())
+
+watch(locale, () => store.fetchCommon())
 </script>
 
 <template>
@@ -54,11 +56,6 @@ const { status } = useAsyncData(() => store.fetchCommon())
     >
       <n-message-provider>
         <Body class="relative">
-          <audio
-            ref="audioRef"
-            autoplay
-            class="hidden"
-          />
           <nuxt-particles
             id="tsparticles"
             :options="particlesFlareOptions"
@@ -72,20 +69,22 @@ const { status } = useAsyncData(() => store.fetchCommon())
             >
           </div>
 
-          <n-modal-provider>
-            <NuxtLoadingIndicator />
-            <div class="flex flex-col justify-between h-full">
-              <port-header
-                :data="commonData"
-                :loading="status !== 'success'"
-              />
-              <slot />
-              <port-footer
-                :data="commonData"
-                :loading="status !== 'success'"
-              />
-            </div>
-          </n-modal-provider>
+          <n-dialog-provider>
+            <n-modal-provider>
+              <NuxtLoadingIndicator />
+              <div class="flex flex-col justify-between h-full">
+                <port-header
+                  :data="commonData"
+                  :loading="status !== 'success'"
+                />
+                <slot />
+                <port-footer
+                  :data="commonData"
+                  :loading="status !== 'success'"
+                />
+              </div>
+            </n-modal-provider>
+          </n-dialog-provider>
         </Body>
       </n-message-provider>
     </n-config-provider>

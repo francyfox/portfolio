@@ -11,6 +11,7 @@ defineProps<{
 }>()
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const showDrawer = ref(false)
 </script>
 
@@ -19,7 +20,7 @@ const showDrawer = ref(false)
     <div class="container">
       <div class="flex justify-between items-center gap-2 py-2 box-border">
         <nuxt-link
-          to="/"
+          :to="localePath('/')"
           class="site-name text-2xl"
         >
           <span
@@ -59,7 +60,7 @@ const showDrawer = ref(false)
             <nuxt-link
               v-for="(item, index) in data?.headerNav"
               :key="index"
-              :to="item.to"
+              :to="localePath(item.to)"
               class="link inline-flex text-xl px-2 py-3 hover:bg-amber hover:text-dark rounded-sm"
               active-class="bg-gray-900 pointer-events-none"
             >
@@ -100,9 +101,10 @@ const showDrawer = ref(false)
             <nuxt-link
               v-for="(item, index) in data?.headerNav"
               :key="index"
-              :to="item.to"
+              :to="localePath(item.to)"
               class="link inline-flex text-xl px-2 py-3 hover:bg-amber hover:text-dark rounded-sm"
               active-class="bg-gray-900 pointer-events-none"
+              @click="showDrawer = false"
             >
               {{ item.name }}
             </nuxt-link>

@@ -1,16 +1,12 @@
 export default defineNuxtConfig({
   components: false,
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
-    head: {
-      script: [
-        {
-          src: 'https://challenges.cloudflare.com/turnstile/v0/api.js',
-          defer: true,
-        },
-      ],
-    },
+  },
+  devServer: {
+    host: '127.0.0.1',
+    port: 3000,
   },
   runtimeConfig: {
     public: {
@@ -22,8 +18,13 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    ['@vite-pwa/nuxt', {
+      meta: {
+        theme_color: 'rgba(64,30,110,0.15)',
+      },
+    }],
     ['nuxt-delay-hydration', {
-      mode: 'mount',
+      mode: 'init',
       debug: process.env.NODE_ENV === 'development',
     }],
     ['@nuxtjs/seo', {
@@ -34,7 +35,9 @@ export default defineNuxtConfig({
         stylistic: true,
         semi: true,
       },
-    }], '@unocss/nuxt', 'nuxt-lucide-icons', ['@nuxtjs/i18n', {
+    }],
+    '@unocss/nuxt', 'nuxt-lucide-icons',
+    ['@nuxtjs/i18n', {
       strategy: 'prefix_and_default',
       defaultLocale: 'ru',
       locales: [
@@ -51,13 +54,11 @@ export default defineNuxtConfig({
           iso: 'en-US',
         },
       ],
-    }], '@pinia/nuxt', ['nuxt-particles', {
+    }],
+    '@pinia/nuxt', ['nuxt-particles', {
       mode: 'custom',
       lazy: true,
     }]],
-  devServer: {
-    port: 9000,
-  },
   css: [
     '@unocss/reset/tailwind-compat.css',
     '@fontsource/tenor-sans',
@@ -82,17 +83,6 @@ export default defineNuxtConfig({
           : [],
     },
     plugins: [],
-  },
-  build: {
-    transpile:
-      process.env.NODE_ENV === 'production'
-        ? [
-            'naive-ui',
-            '@css-render/vue3-ssr',
-            'vueuc',
-            '@juggle/resize-observer',
-          ]
-        : ['@juggle/resize-observer'],
   },
   alias: {
     '#/': './',
