@@ -19,7 +19,7 @@ defineProps<{
           <img
             src="https://res.cloudinary.com/dr5gcup5n/image/upload/f_auto,q_auto/v1/portfolio/yojrk7zsnthf2wosd8ac"
             alt="tree"
-            class="absolute bottom-0 left-0 lt-xl:(fixed opacity-40 bottom-[40px])"
+            class="absolute bottom-[-20px] left-0 lt-xl:(fixed opacity-40 bottom-[40px])"
           >
         </div>
         <div class="w-full z-1">
