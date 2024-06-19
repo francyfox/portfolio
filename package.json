@@ -19,6 +19,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@squidex/squidex": "^1.2.1",
     "@tsparticles/preset-firefly": "^3.1.0",
+    "@vite-pwa/nuxt": "^0.8.0",
     "markdown-it": "^14.1.0",
     "maska": "^3.0.0-beta4",
     "naive-ui": "^2.38.2",
