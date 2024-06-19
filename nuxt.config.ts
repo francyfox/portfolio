@@ -27,9 +27,7 @@ export default defineNuxtConfig({
       mode: 'init',
       debug: process.env.NODE_ENV === 'development',
     }],
-    ['@nuxtjs/seo', {
-      robots: false,
-    }],
+    ['@nuxtjs/seo', {}],
     ['@nuxt/eslint', {
       config: {
         stylistic: true,

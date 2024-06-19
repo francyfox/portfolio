@@ -4,8 +4,14 @@ import PortSectionPortfolio from '~/components/port-section/PortSectionPortfolio
 const { locale } = useI18n()
 const store = usePageStore()
 const { pageData } = storeToRefs(store)
+const commonStore = useCommonStore()
+const { commonData } = storeToRefs(commonStore)
 
 const { status } = useAsyncData(() => store.fetchPage('9940073b-e68b-4e88-a417-85cbea4ac034'))
+
+if (commonData.value?.seo) {
+  useSeoMeta(commonData.value?.seo)
+}
 
 watch(locale, () => store.fetchPage('9940073b-e68b-4e88-a417-85cbea4ac034'))
 </script>
