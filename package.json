@@ -28,6 +28,8 @@
     "nuxt-particles": "^0.3.0",
     "nuxtjs-naive-ui": "^1.0.2",
     "pinia": "^2.1.7",
+    "unplugin-auto-import": "^0.17.6",
+    "unplugin-vue-components": "^0.27.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
     "vue-turnstile": "^1.0.9",
