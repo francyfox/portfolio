@@ -14,6 +14,7 @@
   "dependencies": {
     "@fontsource/montserrat-alternates": "^5.0.13",
     "@fontsource/tenor-sans": "^5.0.20",
+    "@nuxt/content": "^2.12.1",
     "@nuxtjs/i18n": "latest",
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "@pinia/nuxt": "^0.5.1",
