@@ -15,15 +15,16 @@ defineProps<{
     <div class="container">
       <div class="flex justify-between items-center py-5">
         <div class="copyright flex">
-          <div
-            v-if="loading"
-            class="inline-flex w-[250px]"
-          >
-            <n-skeleton
-              text
-              width="100"
-            />
-          </div>
+          <template v-if="loading">
+            <div
+              class="inline-flex w-[250px]"
+            >
+              <n-skeleton
+                text
+                width="100"
+              />
+            </div>
+          </template>
           <div
             v-else
             v-html="data?.copyrigth"

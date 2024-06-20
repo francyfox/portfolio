@@ -1,3 +1,7 @@
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+
 export default defineNuxtConfig({
   components: false,
   devtools: { enabled: false },
@@ -18,6 +22,8 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    'nuxtjs-naive-ui',
+    ['@nuxt/content', {}],
     ['@vite-pwa/nuxt', {
       meta: {
         theme_color: 'rgba(64,30,110,0.15)',
@@ -70,17 +76,41 @@ export default defineNuxtConfig({
       '@unocss/postcss': {},
     },
   },
+  build: {
+    transpile:
+      process.env.NODE_ENV === 'production'
+        ? [
+            'naive-ui',
+            'vueuc',
+            '@css-render/vue3-ssr',
+            '@juggle/resize-observer',
+          ]
+        : ['@juggle/resize-observer'],
+  },
   vite: {
-    css: {
-      devSourcemap: process.env.NODE_ENV === 'development',
-    },
     optimizeDeps: {
       include:
         process.env.NODE_ENV === 'development'
-          ? ['naive-ui'] // ,
+          ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
           : [],
     },
-    plugins: [],
+    plugins: [
+      AutoImport({
+        imports: [
+          {
+            'naive-ui': [
+              'nButton',
+            ],
+          },
+        ],
+      }),
+      Components({
+        resolvers: [NaiveUiResolver()],
+      }),
+    ],
+    css: {
+      devSourcemap: process.env.NODE_ENV === 'development',
+    },
   },
   alias: {
     '#/': './',

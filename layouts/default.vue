@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NConfigProvider, NMessageProvider, NModalProvider, NDialogProvider } from 'naive-ui'
+import { NConfigProvider, NMessageProvider, NModalProvider, NDialogProvider, NButton } from 'naive-ui'
 import { themeOverrides } from '~/app/module/theme/theme'
 import PortHeader from '~/components/port-header/PortHeader.vue'
 import PortFooter from '~/components/port-footer/PortFooter.vue'
