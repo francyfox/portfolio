@@ -1,17 +1,34 @@
 <script setup lang="ts">
 import { NSkeleton } from 'naive-ui'
+import { parseMarkdown } from '~/app/utils'
 
-defineProps<{
+const properties = defineProps<{
   data: {
     title: string
     body: string
   } | undefined
   loading: boolean
 }>()
+
+const content = ref(undefined)
+
+const renderContent = async () => {
+  content.value = await parseMarkdown(properties.data?.body ?? 'No content found')
+}
+
+await renderContent()
+
+onMounted(async () => {
+  await renderContent()
+  document.querySelector('a[href="/#feedback"]')?.addEventListener('click', () => {
+    window.location.hash = ''
+    window.location.hash = '#feedback'
+  })
+})
 </script>
 
 <template>
-  <section class="section-intro relative overflow-hidden h-full py-20 lt-xl:(py-10)">
+  <section class="section-intro relative h-full py-20 lt-xl:(py-10)">
     <div class="section-intro-bg absolute h-full z-1" />
     <div class="container relative">
       <div class="grid grid-cols-2 lt-xl:(grid-cols-1) gap-5">
@@ -24,10 +41,9 @@ defineProps<{
         </div>
         <div class="w-full z-1">
           <h1 class="title text-4xl lt-xl:text-2xl">
-            <span v-if="loading">
+            <span v-if="!data?.title">
               <n-skeleton
                 text
-                :repeat="2"
               />
             </span>
             <span v-else>
@@ -36,7 +52,7 @@ defineProps<{
           </h1>
 
           <main
-            v-if="loading"
+            v-if="!content"
             class="text-md lt-xl:text-sm"
           >
             <n-skeleton
@@ -45,10 +61,11 @@ defineProps<{
             />
           </main>
 
-          <main
-            v-else
-            class="text-md"
-            v-html="$mdRenderer.render(data?.body)"
+          <ContentRendererMarkdown
+            v-if="content"
+            :value="content"
+            tag="main"
+            class="content"
           />
         </div>
       </div>
