@@ -17,7 +17,6 @@ export default defineEventHandler(async (event) => {
     ip,
   }
 
-  console.log(validateParameters)
   const validate = await turnstileValidate(validateParameters)
 
   if (validate.success) {

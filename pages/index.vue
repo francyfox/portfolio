@@ -46,9 +46,7 @@ onMounted(() => {
       :loading="status !== 'success'"
     />
     <port-modal-feedback v-model="showModalFeedback" />
-    <nuxt-link
-      v-if="hasKadet"
-      to="/error"
+    <div
       class="flex absolute bottom-[-5rem] left-[5%] z-20 bg-transparent"
       title="I see you..."
     >
@@ -58,7 +56,7 @@ onMounted(() => {
         width="120"
         height="120"
       >
-    </nuxt-link>
+    </div>
   </div>
 </template>
 
