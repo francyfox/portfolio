@@ -59,7 +59,6 @@ const onSubmitHandler = (error: Event) => {
             break
           }
           case 'success': {
-            console.log(data)
             dialog.success({
               title: 'Success',
               content: t('form.success'),
