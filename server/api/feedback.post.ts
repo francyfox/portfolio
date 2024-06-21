@@ -7,13 +7,17 @@ export default defineEventHandler(async (event) => {
   const token = process.env.TELEGRAM_API_TOKEN ?? ''
   const secret = process.env.TUNRNSTILE_SECRET_KEY ?? ''
   const apiURL = `https://api.telegram.org/bot${token}/sendMessage`
-  const ip = getRequestIP(event) ?? ''
+  const ip = getRequestHeader(event, 'CF-Connecting-IP')
+    || getRequestIP(event)
+    || getRequestHeader(event, 'Host')
+    || ''
   const validateParameters = {
     secret,
-    token: token,
+    token: body.token,
     ip,
   }
 
+  console.log(validateParameters)
   const validate = await turnstileValidate(validateParameters)
 
   if (validate.success) {

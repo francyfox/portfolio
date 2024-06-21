@@ -45,35 +45,42 @@ const onSubmitHandler = (error: Event) => {
   error.preventDefault()
   formRef.value?.validate(async (errors) => {
     if (!errors) {
-      message.warning(t('form.sending'))
-
-      const { data, error } = useFetch('/api/feedback', {
+      const { data, status } = useFetch('/api/feedback', {
         method: 'POST',
         body: formValue.value,
       })
 
       model.value = false
 
-      if (error.value) {
-        console.log(error.value)
-        dialog.success({
-          title: 'Error',
-          content: t('form.error'),
-          onPositiveClick: () => {
-            message.success('OK')
-          },
-        })
-      }
-      else {
-        console.log(data)
-        dialog.success({
-          title: 'Success',
-          content: t('form.success'),
-          onPositiveClick: () => {
-            message.success('OK')
-          },
-        })
-      }
+      watch(status, () => {
+        switch (status.value) {
+          case 'pending': {
+            message.warning(t('form.sending'))
+            break
+          }
+          case 'success': {
+            console.log(data)
+            dialog.success({
+              title: 'Success',
+              content: t('form.success'),
+              onPositiveClick: () => {
+                message.success('OK')
+              },
+            })
+            break
+          }
+          case 'error': {
+            dialog.error({
+              title: 'Error',
+              content: t('form.error'),
+              onPositiveClick: () => {
+                message.success('OK')
+              },
+            })
+            break
+          }
+        }
+      })
     }
   })
 }
@@ -94,7 +101,6 @@ const onCancelHandler = () => {
       :model="formValue"
       :rules="rules"
       class="mt-10"
-      @submit="onSubmitHandler"
     >
       <n-form-item
         :label="t('form.feedback.fullName')"
@@ -164,6 +170,7 @@ const onCancelHandler = () => {
         <n-button
           type="primary"
           attr-type="submit"
+          @click="onSubmitHandler"
         >
           {{ $t('form.feedback.submit') }}
 
