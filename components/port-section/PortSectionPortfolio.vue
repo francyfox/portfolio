@@ -21,9 +21,9 @@ withDefaults(
       slider: [{
         title: '',
         description: '',
-        tags: Array.from({ length: 4 }, () => ''),
+        tags: Array.from({length: 4}, () => ''),
         image: '',
-        links: [{ title: '', to: '' }],
+        links: [{title: '', to: ''}],
       }],
     },
   },
@@ -33,6 +33,15 @@ withDefaults(
 <template>
   <section class="section-portfolio my-5">
     <div class="container">
+      <div class="mb-2">
+        <p>
+          # <a href="https://drive.google.com/file/d/1dj-bJx8pEmgah58ewvY48J6bFvyXDKW_/view">CV</a>
+          | # <a href="https://hh.kz/resume/1a91a626ff044cf3650039ed1f414e65743168">HeadHunter</a>
+          | # <a href="https://github.com/francyfox">Github</a>
+          | # <a href="https://t.me/francyfox">Telegram</a>
+          | # <a href="#feedback">Feedback form</a>
+        </p>
+      </div>
       <h1
         class="title text-4xl"
       >
@@ -105,14 +114,14 @@ withDefaults(
               class="custom-arrow--left"
               @click="prev"
             >
-              <lucide-square-chevron-left />
+              <lucide-square-chevron-left/>
             </button>
             <button
               type="button"
               class="custom-arrow--right"
               @click="next"
             >
-              <lucide-square-chevron-right />
+              <lucide-square-chevron-right/>
             </button>
           </div>
         </template>
