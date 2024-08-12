@@ -41,6 +41,9 @@ withDefaults(
           | # <a href="https://t.me/francyfox">Telegram</a>
           | # <a href="#feedback">Feedback form</a>
         </p>
+        <p>
+          Time zone UTC+5 (Qazaqstan, Ust-Kamenogorsk)
+        </p>
       </div>
       <h1
         class="title text-4xl"
