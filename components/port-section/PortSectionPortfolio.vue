@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NCarousel, NCarouselItem, NSkeleton, NButton } from 'naive-ui'
 import PortSliderLinks from '~/components/port-slider-links/PortSliderLinks.vue'
+import PortModalFeedback from '~/components/port-modal/PortModalFeedback.vue'
 
 withDefaults(
   defineProps<{
@@ -146,6 +147,7 @@ const showModalFeedback = ref(false)
         </template>
       </n-carousel>
     </div>
+    <port-modal-feedback v-model="showModalFeedback" />
   </section>
 </template>
 
