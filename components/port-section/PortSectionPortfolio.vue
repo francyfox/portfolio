@@ -28,18 +28,24 @@ withDefaults(
     },
   },
 )
+
+const showModalFeedback = ref(false)
 </script>
 
 <template>
   <section class="section-portfolio my-5">
     <div class="container">
-      <div class="mb-2">
+      <div class="head-links mb-2 font-bold">
         <p>
           # <a href="https://drive.google.com/file/d/1dj-bJx8pEmgah58ewvY48J6bFvyXDKW_/view">CV</a>
           | # <a href="https://hh.kz/resume/1a91a626ff044cf3650039ed1f414e65743168">HeadHunter</a>
           | # <a href="https://github.com/francyfox">Github</a>
           | # <a href="https://t.me/francyfox">Telegram</a>
-          | # <a href="#feedback">Feedback form</a>
+          | # <a href="#feedback"
+                 @click.prevent="showModalFeedback = true"
+        >
+          Feedback form
+        </a>
         </p>
         <p>
           Time zone UTC+5 (Qazaqstan, Ust-Kamenogorsk)
