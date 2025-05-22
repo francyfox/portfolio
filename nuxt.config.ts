@@ -3,25 +3,14 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineNuxtConfig({
-  components: false,
-  devtools: { enabled: false },
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
-  },
-  devServer: {
-    host: '127.0.0.1',
-    port: 3000,
-  },
-  runtimeConfig: {
-    public: {
-      environment: process.env.VUE_APP_SQUIDEX_URL ?? '',
-      appName: process.env.VUE_APP_SQUIDEX_APPNAME ?? '',
-      clientId: process.env.VUE_APP_SQUIDEX_CLIENTID ?? '',
-      clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
-      turnstileSiteKey: process.env.TUNRNSTILE_SITE_KEY ?? '',
-    },
-  },
   modules: [
+    ['nuxt-yandex-metrika', {
+      id: 102_063_506,
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      verification: 'b384d10badb4f1fd',
+    }],
     'nuxtjs-naive-ui',
     ['@nuxt/content', {}],
     ['@vite-pwa/nuxt', {
@@ -63,30 +52,40 @@ export default defineNuxtConfig({
       mode: 'custom',
       lazy: true,
     }]],
+  components: false,
+  devtools: { enabled: false },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   css: [
     '@unocss/reset/tailwind-compat.css',
     '@fontsource/tenor-sans',
     '@fontsource/montserrat-alternates',
     '~/assets/postcss/base.pcss',
   ],
-  postcss: {
-    plugins: {
-      'postcss-nested': {},
-      'postcss-hexrgba': {},
-      '@unocss/postcss': {},
+  runtimeConfig: {
+    public: {
+      environment: process.env.VUE_APP_SQUIDEX_URL ?? '',
+      appName: process.env.VUE_APP_SQUIDEX_APPNAME ?? '',
+      clientId: process.env.VUE_APP_SQUIDEX_CLIENTID ?? '',
+      clientSecret: process.env.VUE_APP_SQUIDEX_CLIENTSECRET ?? '',
+      turnstileSiteKey: process.env.TUNRNSTILE_SITE_KEY ?? '',
     },
   },
-  build: {
-    transpile:
-      process.env.NODE_ENV === 'production'
-        ? [
-            'naive-ui',
-            'vueuc',
-            '@css-render/vue3-ssr',
-            '@juggle/resize-observer',
-          ]
-        : ['@juggle/resize-observer'],
+  alias: {
+    '#/': './',
+    '#components/': './components/',
+    '#assets/': './assets/',
+    '#pages/': './pages/',
   },
+  build: {
+    transpile: ['vueuc', 'naive-ui'],
+  },
+  devServer: {
+    host: '127.0.0.1',
+    port: 3000,
+  },
+  compatibilityDate: '2025-05-22',
   vite: {
     optimizeDeps: {
       include:
@@ -112,10 +111,18 @@ export default defineNuxtConfig({
       devSourcemap: process.env.NODE_ENV === 'development',
     },
   },
-  alias: {
-    '#/': './',
-    '#components/': './components/',
-    '#assets/': './assets/',
-    '#pages/': './pages/',
+  postcss: {
+    plugins: {
+      'postcss-nested': {},
+      'postcss-hexrgba': {},
+      '@unocss/postcss': {},
+    },
+  },
+  i18n: {
+    defaultLocale: 'ru',
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'ru', name: 'Russian', file: 'ru.json' },
+    ],
   },
 })
