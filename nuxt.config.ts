@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       clickmap: true,
       trackLinks: true,
       accurateTrackBounce: true,
-      verification: 'b384d10badb4f1fd',
+      verification: '515a4a06271872d9',
     }],
     'nuxtjs-naive-ui',
     ['@nuxt/content', {}],
