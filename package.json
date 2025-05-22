@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "nuxt-yandex-metrika": "^1.2.9",
     "@fontsource/montserrat-alternates": "^5.2.5",
     "@fontsource/tenor-sans": "^5.2.5",
     "@nuxt/content": "^3.5.1",
@@ -45,7 +46,6 @@
     "eslint": "^9.27.0",
     "eslint-plugin-unicorn": "^59.0.1",
     "eslint-plugin-vue": "^10.1.0",
-    "nuxt-yandex-metrika": "^1.2.9",
     "postcss-hexrgba": "^2.1.0",
     "postcss-nested": "^7.0.2",
     "postcss-responsive-type": "^1.0.0",
