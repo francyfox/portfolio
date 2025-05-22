@@ -2,7 +2,6 @@
     base='/'
     publish='dist'
     command='nuxt build'
-    environment = { NODE_VERSION = "18.0.0" }
 
 [[headers]]
     for = "/*"
