@@ -38,8 +38,8 @@ const showModalFeedback = ref(false)
     <div class="container">
       <div class="head-links mb-2 font-bold">
         <p>
-          # <a href="https://drive.google.com/file/d/1dj-bJx8pEmgah58ewvY48J6bFvyXDKW_/view">CV</a>
-          | # <a href="https://hh.kz/resume/1a91a626ff044cf3650039ed1f414e65743168">HeadHunter</a>
+          # <a href="https://drive.google.com/file/d/1OcxsZEK4sBV8ubiOrnphzFNgKH0eTiVh/view?usp=sharing">PDF</a>
+          | # <a href="https://hh.ru/resume/14785116ff0ee09b660039ed1f6c483545436c">HeadHunter</a>
           | # <a href="https://github.com/francyfox">Github</a>
           | # <a href="https://t.me/francyfox">Telegram</a>
           | # <a href="#feedback"
