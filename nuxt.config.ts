@@ -55,6 +55,15 @@ export default defineNuxtConfig({
   components: false,
   devtools: { enabled: false },
   app: {
+    head: {
+      script: [
+        {
+          src: 'https://app.rybbit.io/api/script.js',
+          'data-site-id': '868',
+          defer: true
+        }
+      ]
+    },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
   css: [
