@@ -4,6 +4,8 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineNuxtConfig({
   modules: [
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     ['nuxt-yandex-metrika', {
       id: 102_063_506,
       clickmap: true,
@@ -12,7 +14,6 @@ export default defineNuxtConfig({
       verification: 'b384d10badb4f1fd',
     }],
     'nuxtjs-naive-ui',
-    ['@nuxt/content', {}],
     ['@vite-pwa/nuxt', {
       meta: {
         theme_color: 'rgba(64,30,110,0.15)',
@@ -52,6 +53,13 @@ export default defineNuxtConfig({
       mode: 'custom',
       lazy: true,
     }]],
+  site: {
+    url: 'https://portfolio.shalotts.site',
+    name: 'G.D. Portfolio',
+  },
+  robots: {
+    blockAiBots: true,
+  },
   components: false,
   devtools: { enabled: false },
   app: {
