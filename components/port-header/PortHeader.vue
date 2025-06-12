@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NSkeleton, NButton, NDrawer, NDrawerContent } from 'naive-ui'
+import { NButton, NDrawer, NDrawerContent } from 'naive-ui'
 import PortLang from '~/components/port-lang/PortLang.vue'
 
 defineProps<{
@@ -23,38 +23,13 @@ const showDrawer = ref(false)
           :to="localePath('/')"
           class="site-name text-2xl"
         >
-          <span
-            v-if="loading"
-            class="flex w-[150px]"
-          >
-            <transition>
-              <n-skeleton
-                text
-                round
-                width="10"
-              />
-            </transition>
-          </span>
-          <span v-else>
+          <span>
             {{ data?.siteName }}
           </span>
         </nuxt-link>
 
         <div class="flex items-center gap-5">
           <nav
-            v-if="loading"
-            class="flex gap-5"
-          >
-            <n-skeleton
-              v-for="(item, index) in Array.from({ length: 5 }, () => null)"
-              :key="index"
-              text
-              round
-              class="w-[80px]"
-            />
-          </nav>
-          <nav
-            v-else
             class="hidden items-center gap-5 xl:(flex)"
           >
             <nuxt-link

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NCarousel, NCarouselItem, NSkeleton, NButton } from 'naive-ui'
+import { NCarousel, NCarouselItem, NButton } from 'naive-ui'
 import PortSliderLinks from '~/components/port-slider-links/PortSliderLinks.vue'
 import PortModalFeedback from '~/components/port-modal/PortModalFeedback.vue'
 
@@ -55,14 +55,8 @@ const showModalFeedback = ref(false)
       <h1
         class="title text-4xl"
       >
-        <span v-if="!loading">
+        <span>
           {{ data?.title }}
-        </span>
-        <span v-else>
-          <n-skeleton
-            text
-            width="100"
-          />
         </span>
       </h1>
 
@@ -80,7 +74,6 @@ const showModalFeedback = ref(false)
             class="flex flex-col justify-end items-end gap-5 min-h-[650px] bg-dark:50 backdrop-blur-lg rounded-sm overflow-hidden bg-cover p-5"
           >
             <div
-              v-if="!loading"
               class="max-w-2xl flex flex-col gap-5 bg-dark:95 p-5 rounded-sm"
             >
               <div
@@ -110,7 +103,6 @@ const showModalFeedback = ref(false)
               </div>
 
               <port-slider-links
-                v-if="!loading"
                 :data="slide.links"
               />
             </div>
