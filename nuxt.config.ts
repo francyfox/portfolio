@@ -58,11 +58,11 @@ export default defineNuxtConfig({
     head: {
       script: [
         {
-          src: 'https://app.rybbit.io/api/script.js',
+          "src": 'https://app.rybbit.io/api/script.js',
           'data-site-id': '868',
-          defer: true
-        }
-      ]
+          "defer": true,
+        },
+      ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
@@ -89,6 +89,10 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: ['vueuc', 'naive-ui'],
+  },
+  routeRules: {
+    '/': { prerender: true },
+    '/prerender-multiple/**': { prerender: true },
   },
   devServer: {
     host: '127.0.0.1',
