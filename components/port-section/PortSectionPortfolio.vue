@@ -63,15 +63,16 @@ const showModalFeedback = ref(false)
       <n-carousel
         show-arrow
         autoplay
-        class="relative"
+        class="relative h-[650px] overflow-hidden"
       >
         <n-carousel-item
           v-for="(slide, index) in data?.slider"
           :key="index"
+          class="h-[650px] rounded-sm overflow-hidden"
         >
           <div
             :style="`background-image: url('${slide.image}')`"
-            class="flex flex-col justify-end items-end gap-5 min-h-[650px] bg-dark:50 backdrop-blur-lg rounded-sm overflow-hidden bg-cover p-5"
+            class="h-[650px] flex flex-col justify-end items-end gap-5 bg-dark:50 backdrop-blur-lg bg-cover p-5"
           >
             <div
               class="max-w-2xl flex flex-col gap-5 bg-dark:95 p-5 rounded-sm"
