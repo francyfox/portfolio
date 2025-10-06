@@ -100,7 +100,6 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
-    '/prerender-multiple/**': { prerender: true },
   },
   devServer: {
     host: '127.0.0.1',
@@ -131,6 +130,9 @@ export default defineNuxtConfig({
     css: {
       devSourcemap: process.env.NODE_ENV === 'development',
     },
+  },
+  ogImage: {
+    enabled: false,
   },
   postcss: {
     plugins: {
