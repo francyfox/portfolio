@@ -1,0 +1,17 @@
+---
+import { marked } from 'marked';
+
+const { title, git, preview, content } = Astro.props
+const contentParsed = marked.parse(content());
+---
+
+<div class="flex items-center flex-wrap gap-2">
+  <span>### {title} |</span>
+  {git && (<a href={git} target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white" alt="git" /></a>) }
+  { preview && (<a href={preview} target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/SITE-0077B6?style=flat-square&logo=website&logoColor=white" alt="preview" /></a>)}
+</div>
+
+
+<article set:html={contentParsed} class="font-mono line-height-tight text-sm" />
+
+<hr>

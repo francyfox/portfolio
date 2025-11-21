@@ -1,0 +1,7 @@
+[![Resume](https://img.shields.io/badge/RESUME-5A29E4?style=for-the-badge&logo=rescuetime&logoColor=white)](https://drive.google.com/file/d/1Chs0VeJaHsWngLN0eFdh3mTgPr9PLaQ-/view?usp=sharing)
+[![HeadHunter](https://img.shields.io/badge/HEADHUNTER-D32F2F?style=for-the-badge&logo=hunter&logoColor=white)](https://hh.ru/resume/14785116ff0ee09b660039ed1f6c483545436c)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/francyfox/)
+[![GitHub](https://img.shields.io/badge/GITHUB-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/francyfox)
+[![Telegram](https://img.shields.io/badge/TELEGRAM-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/francyfox)
+[![Email](https://img.shields.io/badge/francyfox@yandex.ru-0A66C2?style=for-the-badge&logo=yandex&logoColor=white)](mailto:francyfox@yandex.ru)
+[![Feedback](https://img.shields.io/badge/FEEDBACK_FORM-107C10?style=for-the-badge&logo=microsoftforms&logoColor=white)](#feedback)

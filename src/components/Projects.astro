@@ -1,0 +1,55 @@
+---
+import Aside from './Aside.astro'
+import Project from './Project.astro'
+
+const posts = Object.values(import.meta.glob('./project-list/*.md', { eager: true }));
+---
+
+<Aside className={['h-full']}>
+    <div class="text-2xl">
+        Projects
+    </div>
+
+    <div class="projects mt-[-10px] flex flex-col gap-2 relative py-2 pr-2 h-full overflow-y-auto">
+      {posts.map(post =>
+        <Project
+          title={post.frontmatter.title}
+          git={post.frontmatter?.github}
+          preview={post.frontmatter?.preview}
+          content={post.rawContent}
+        />
+      )}
+    </div>
+</Aside>
+
+<style lang="postcss">
+    .projects {
+        /* ===== Scrollbar CSS ===== */
+        /* Firefox */
+        & {
+            scrollbar-width: auto;
+            scrollbar-color: #8f54a0 #161616;
+        }
+
+        /* Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #161616;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #8f54a0;
+            border-radius: 10px;
+            border: 3px solid #161616;
+        }
+
+        &::after, &::after {
+            content: '';
+            position: absolute;
+
+        }
+    }
+</style>

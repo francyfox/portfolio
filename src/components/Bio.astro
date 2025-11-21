@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets'
+import Aside from './Aside.astro'
+import TrioGIF from '../assets/trio.gif'
+import FrontendMD from '../components/frontend.md'
+import BackendMD from '../components/backend.md'
+---
+<Aside className={['relative', 'h-full', 'max-w-[602px]', 'overflow-hidden']} >
+    <div class="left-[60%] top-[100%] absolute origin-top-left rotate-[-90.41deg] justify-start gradient-transparent text-[150px] font-normal qwigley">GolotaDanil</div>
+    <div class="flex items-center gap-2">
+        <h1 class="justify-start gradient-red text-6xl font-normal">GD portfolio</h1>
+    </div>
+
+    <div class="text-lg">
+        Hi, welcome to my page. I'm Danil, I'm glad to see you. I'm a web frontend developer. Basically, I work with Vue/Nuxt, but I love working with Elysia.
+    </div>
+
+    <div class="flex justify-end">
+        <Image width={180} src={TrioGIF} alt="trio gif" />
+    </div>
+
+    <div class="flex flex-col gap-5">
+        <div class="text-2xl">
+            💻 Frontend Stack
+        </div>
+
+        <div class="md-badges">
+            <FrontendMD />
+        </div>
+
+        <div class="text-2xl">
+            🌐 Backend & Environment Stack
+        </div>
+
+        <div class="md-badges">
+            <BackendMD />
+        </div>
+    </div>
+
+    <main>
+        I'd like to work with internal services, like an intranet. Not so far away, I already worked with a Squid proxy real-time analyzer. By the way, it's a project for my dad, and it's really more interesting than working with online shops or simple landing pages.
+    </main>
+</Aside>

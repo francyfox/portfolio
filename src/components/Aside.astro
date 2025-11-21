@@ -1,0 +1,16 @@
+---
+const { className } = Astro.props;
+
+const defaultClass = 'aside px-5 py-10 w-full flex flex-col gap-5 rounded-[5px]'.split(" ")
+---
+
+<div class:list={[defaultClass, className]}>
+    <slot />
+</div>
+
+<style lang="postcss" scoped>
+    .aside {
+        background: linear-gradient(270deg, rgba(194.93, 38.42, 38.42, 0.11) 0%, rgb(22 10 19 / 50%) 100%);;
+        backdrop-filter: blur(10px);
+    }
+</style>
