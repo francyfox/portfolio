@@ -1,7 +1,7 @@
 ---
 const { className } = Astro.props;
 
-const defaultClass = 'aside px-5 py-10 w-full flex flex-col gap-5 rounded-[5px]'.split(" ")
+const defaultClass = 'aside h-full px-3 md:px-5 py-5 md:px-10 w-full flex flex-col gap-5 rounded-[5px] shadow-lg'.split(" ")
 ---
 
 <div class:list={[defaultClass, className]}>
