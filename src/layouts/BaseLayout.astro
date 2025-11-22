@@ -2,7 +2,9 @@
 import FormProvider from '../components/FormProvider.vue'
 import backgroundImage from '../assets/bg.webp?url';
 import '@fontsource/racing-sans-one';
+import racingSansOne from '@fontsource/racing-sans-one/files/racing-sans-one-latin-400-normal.woff2?url';
 import '@fontsource/qwigley';
+import qwigley from '@fontsource/qwigley/files/qwigley-latin-400-normal.woff2?url';
 import '../assets/style.pcss'
 import {
     getSecret,
@@ -24,6 +26,11 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://img.shields.io" crossorigin />
+    <link rel="preload" as="image" href={backgroundImage} />
+    <link rel="preload" as="font" type="font/woff2" href={racingSansOne} />
+    <link rel="preload" as="font" type="font/woff2" href={qwigley} />
 
     <meta property="og:url" content={Astro.site} />
     <meta property="og:type" content="website">
