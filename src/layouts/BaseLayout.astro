@@ -8,6 +8,8 @@ import {
     getSecret,
 } from 'astro:env/server';
 
+export const prerender = true
+
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const title = 'GD Portfolio | Golota Danil — web frontend developer'
 const description = 'Site portfolio. Web dev from Qazaqstan. Tech stack Vue, Nuxt, Astro'
@@ -32,9 +34,8 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
     <script src="https://app.rybbit.io/api/script.js" data-site-id="868" defer />
 </head>
 <body>
-<FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
 <slot />
-
+<FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
 </body>
 </html>
 
