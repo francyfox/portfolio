@@ -1,12 +1,18 @@
 ---
+import FormProvider from '../components/FormProvider.vue'
 import backgroundImage from '../assets/bg.webp?url';
 import '@fontsource/racing-sans-one';
 import '@fontsource/qwigley';
 import '../assets/style.pcss'
+import {
+    getSecret,
+} from 'astro:env/server';
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const title = 'GD Portfolio | Golota Danil — web frontend developer'
 const description = 'Site portfolio. Web dev from Qazaqstan. Tech stack Vue, Nuxt, Astro'
+
+const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
 ---
 <html lang="en">
 <head>
@@ -23,9 +29,12 @@ const description = 'Site portfolio. Web dev from Qazaqstan. Tech stack Vue, Nux
     <meta property="og:description" content={description} />
 
     <meta name="generator" content={Astro.generator} />
+    <script src="https://app.rybbit.io/api/script.js" data-site-id="868" defer />
 </head>
 <body>
+<FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
 <slot />
+
 </body>
 </html>
 
