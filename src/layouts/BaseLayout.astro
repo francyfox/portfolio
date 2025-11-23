@@ -9,6 +9,7 @@ import '../assets/style.pcss'
 import {
     getSecret,
 } from 'astro:env/server';
+import Analytics from '@vercel/analytics/astro'
 
 export const prerender = true
 
@@ -43,6 +44,7 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
 <body>
 <slot />
 <FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
+<Analytics />
 </body>
 </html>
 
