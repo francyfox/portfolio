@@ -10,6 +10,7 @@ import {
     getSecret,
 } from 'astro:env/server';
 import Analytics from '@vercel/analytics/astro'
+import SpeedInsights  from "@vercel/speed-insights/astro"
 
 export const prerender = true
 
@@ -46,6 +47,7 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
 <slot />
 <FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
 <Analytics />
+<SpeedInsights />
 </body>
 </html>
 
