@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from '@vue/runtime-core'
 import { NConfigProvider, NMessageProvider, NModalProvider, NDialogProvider } from 'naive-ui'
 import { themeOverrides } from '../theme.ts'
-import FeedbackForm from './FeedbackForm.vue'
+
+const FeedbackForm = defineAsyncComponent(() => import('./FeedbackForm.vue'))
 
 const {
   turnstileSiteKey,

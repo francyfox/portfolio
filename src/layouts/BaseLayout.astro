@@ -45,7 +45,11 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
 </head>
 <body>
 <slot />
-<FormProvider client:only="vue" turnstileSiteKey={turnstileSiteKey} />
+<FormProvider
+  client:load
+  client:only="vue"
+  turnstileSiteKey={turnstileSiteKey}
+/>
 <Analytics />
 <SpeedInsights />
 </body>

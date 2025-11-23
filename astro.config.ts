@@ -3,7 +3,7 @@ import UnoCSS from 'unocss/astro'
 import autoprefixer from "autoprefixer";
 import rehypeExternalLinks from 'rehype-external-links';
 import { visit } from 'unist-util-visit';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 import vue from '@astrojs/vue';
 
 
