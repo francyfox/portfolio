@@ -20,7 +20,7 @@ const feedbackSchema = z.object({
   }).optional(),
   phone: z
     .string(stringError('phone')).optional(),
-  email: z.string(stringError('email')).optional(),
+  email: z.string(stringError('email')),
   message: z.string(stringError('message')),
   token: z.string(stringError('token')),
 })

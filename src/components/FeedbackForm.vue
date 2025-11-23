@@ -26,6 +26,7 @@ const rules = {
     trigger: ['input'],
   },
   email: {
+    required: true,
     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     message: "Bad email address",
     trigger: ['input'],
@@ -124,6 +125,16 @@ onMounted(() => {
       </n-form-item>
 
       <n-form-item
+          label="Email"
+          path="email"
+      >
+        <n-input
+            v-model:value="formValue.email"
+            placeholder=""
+        />
+      </n-form-item>
+
+      <n-form-item
           label="Phone (Qazaqstan only)"
           path="phone"
       >
@@ -136,16 +147,7 @@ onMounted(() => {
       </n-form-item>
 
       <n-form-item
-          label="Email"
-          path="email"
-      >
-        <n-input
-            v-model:value="formValue.email"
-            placeholder=""
-        />
-      </n-form-item>
-
-      <n-form-item
+          class="my-[-10px]"
           :show-label="false"
           path="hasSocial"
       >
@@ -177,15 +179,19 @@ onMounted(() => {
         />
       </n-form-item>
 
-      <n-form-item>
-        <vue-turnstile
-            v-if="turnstileSiteKey"
-            v-model="formValue.token"
-            :site-key="turnstileSiteKey"
-            theme="dark"
-            class="max-w-[100%] box-border overflow-hidden"
-        />
-        <span v-else>Error! Cant load cloudflare turnstile. No site key!</span>
+      <n-form-item class="mt-[-15px]">
+        <div class="flex flex-col gap-1">
+          <vue-turnstile
+              v-if="turnstileSiteKey"
+              v-model="formValue.token"
+              :site-key="turnstileSiteKey"
+              theme="dark"
+              class="max-w-[100%] box-border overflow-hidden min-h-[65px]"
+          />
+
+          <span v-else>Error! Cant load cloudflare turnstile. No site key!</span>
+          <span class="text-xs">Sometimes turnstile load with error. Please reload page and try again</span>
+        </div>
       </n-form-item>
 
       <n-form-item :show-label="false">
