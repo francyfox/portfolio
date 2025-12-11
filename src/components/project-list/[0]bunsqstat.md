@@ -1,6 +1,8 @@
 ---
-title: BunSqStat [WIP]
+title: BunSqStat
 github: https://github.com/francyfox/BunSqStat
+links:
+  - https://habr.com/ru/articles/973934/
 ---
 
 **Stack:** Bun, Elysia, Vue, Naive UI, Redis, Squid

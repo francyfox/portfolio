@@ -7,7 +7,7 @@ const posts = Object.values(import.meta.glob('./project-list/*.md', { eager: tru
 
 <Aside className={['h-full']}>
     <div class="text-2xl">
-        Projects
+        Projects && Articles
     </div>
 
     <div class="projects max-h-[440px] xl:max-h-[600px] 2xl:max-h-[480px] mt-[-10px] flex relative px-2 rounded-lg overflow-hidden">
@@ -17,6 +17,7 @@ const posts = Object.values(import.meta.glob('./project-list/*.md', { eager: tru
                 title={post.frontmatter.title}
                 git={post.frontmatter?.github}
                 preview={post.frontmatter?.preview}
+                links={post.frontmatter?.links}
                 content={post.rawContent}
               />
             )}
