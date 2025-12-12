@@ -11,6 +11,8 @@ import {
 } from 'astro:env/server';
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights  from "@vercel/speed-insights/astro"
+import GoogleTag from '../components/GoogleTag.astro'
+import YandexTag from '../components/YandexTag.astro'
 
 export const prerender = true
 
@@ -39,10 +41,25 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
     <meta property="og:type" content="website">
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${Astro.site}/favicon.svg`} />
+    <meta property="og:site_name" content="GD Portfolio" />
+    <meta property="og:locale" content="en_EN" />
 
     <meta name="generator" content={Astro.generator} />
     <script src="https://app.rybbit.io/api/script.js" data-site-id="868" defer />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Данил Голота",
+          "jobTitle": "Frontend Developer",
+          "url": "https://portfolio.shalotts.site",
+          "sameAs": ["https://github.com/francyfox", "https://t.me/francyfox"]
+        }
+    </script>
+    <YandexTag />
 </head>
+<GoogleTag />
 <body>
 <slot />
 <FormProvider
