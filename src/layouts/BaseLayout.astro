@@ -58,17 +58,17 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
         }
     </script>
     <YandexTag />
+    <GoogleTag />
 </head>
-<GoogleTag />
 <body>
-<slot />
-<FormProvider
-  client:load
-  client:only="vue"
-  turnstileSiteKey={turnstileSiteKey}
-/>
-<Analytics />
-<SpeedInsights />
+    <slot />
+    <FormProvider
+      client:load
+      client:only="vue"
+      turnstileSiteKey={turnstileSiteKey}
+    />
+    <Analytics />
+    <SpeedInsights />
 </body>
 </html>
 
