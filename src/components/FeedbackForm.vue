@@ -190,7 +190,7 @@ onMounted(() => {
           />
 
           <span v-else>Error! Cant load cloudflare turnstile. No site key!</span>
-          <span class="text-xs">Sometimes turnstile load with error. Please reload page and try again</span>
+          <span class="text-xs">Sometimes turnstile loads with error. Please reopen modal and try again</span>
         </div>
       </n-form-item>
 

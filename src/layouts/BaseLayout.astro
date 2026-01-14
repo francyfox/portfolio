@@ -46,7 +46,6 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
     <meta property="og:locale" content="en_EN" />
 
     <meta name="generator" content={Astro.generator} />
-    <script src="https://app.rybbit.io/api/script.js" data-site-id="868" defer />
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -57,18 +56,19 @@ const turnstileSiteKey = getSecret('TUNRNSTILE_SITE_KEY');
           "sameAs": ["https://github.com/francyfox", "https://t.me/francyfox"]
         }
     </script>
-    <YandexTag />
-    <GoogleTag />
+    <script src="https://app.rybbit.io/api/script.js" data-site-id="868" defer />
 </head>
 <body>
     <slot />
     <FormProvider
-      client:load
+      client:visible
       client:only="vue"
       turnstileSiteKey={turnstileSiteKey}
     />
     <Analytics />
     <SpeedInsights />
+    <YandexTag />
+    <GoogleTag />
 </body>
 </html>
 

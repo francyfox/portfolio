@@ -5,7 +5,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import { visit } from 'unist-util-visit';
 import vercel from '@astrojs/vercel';
 import vue from '@astrojs/vue';
-
+import compressor from "astro-compressor";
 
 function addLazyLoading() {
   return (tree) => {
@@ -26,7 +26,7 @@ export default defineConfig({
   vite: {
     postcss: {
       plugins: [
-        autoprefixer()
+        autoprefixer(),
       ]
     },
     ssr: {
@@ -38,6 +38,8 @@ export default defineConfig({
     UnoCSS({
       injectReset: true
     }),
+    compressor({ gzip: { level: 6 }, brotli: { chunkSize: 16 * 512 } }),
+    (await import("@playform/inline")).default()
   ],
   markdown: {
     rehypePlugins: [
