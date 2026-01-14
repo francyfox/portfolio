@@ -6,7 +6,6 @@ import { visit } from 'unist-util-visit';
 import vercel from '@astrojs/vercel';
 import vue from '@astrojs/vue';
 import compressor from "astro-compressor";
-import partytown from '@astrojs/partytown';
 
 function addLazyLoading() {
   return (tree) => {
@@ -40,8 +39,7 @@ export default defineConfig({
       injectReset: true
     }),
     compressor({ gzip: { level: 6 }, brotli: { chunkSize: 16 * 512 } }),
-    (await import("@playform/inline")).default(),
-    partytown()
+    (await import("@playform/inline")).default()
   ],
   markdown: {
     rehypePlugins: [
