@@ -1,7 +1,7 @@
 ---
 import { marked } from 'marked';
 
-const { title, git, preview, links, content } = Astro.props
+const { title, git, preview, mcp, links, content } = Astro.props
 const contentParsed = marked.parse(content());
 function getDomainShield(link: string) {
     return `https://img.shields.io/badge/${new URL(link).hostname.toUpperCase()}-277327?style=flat-square&logo=website&logoColor=white`
@@ -15,6 +15,7 @@ function getDomainShield(link: string) {
         <span>### {title} |</span>
         { git && (<a href={git} target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white" alt="git" /></a>) }
         { preview && (<a href={preview} target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/SITE-0077B6?style=flat-square&logo=website&logoColor=white" alt="preview" /></a>)}
+        { mcp && (<a href={mcp} target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/MCP%20SERVER-FF6B35?style=flat-square&logo=modelcontextprotocol&logoColor=white" alt="mcp server" /></a>)}
         { links && (links.map((link: string) => <a href={link} target="_blank" rel="noopener noreferrer"><img src={getDomainShield(link)} alt="preview" /></a>))}
     </div>
 

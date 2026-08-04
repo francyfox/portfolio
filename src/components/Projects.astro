@@ -17,6 +17,7 @@ const posts = Object.values(import.meta.glob('./project-list/*.md', { eager: tru
                 title={post.frontmatter.title}
                 git={post.frontmatter?.github}
                 preview={post.frontmatter?.preview}
+                mcp={post.frontmatter?.mcp}
                 links={post.frontmatter?.links}
                 content={post.rawContent}
               />
